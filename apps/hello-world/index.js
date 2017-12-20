@@ -41,21 +41,19 @@ app.intent('sayWeather',
   },
   function(request,response) {
   	var city = request.slot("city");
-
-  	weather.find({search: city, degreeType: 'C'}, function(err, result) {
-  		if(err) {
-  			console.log(err);
-  		}
- 
-  		// console.log(JSON.stringify(result, null, 2));
-  		// var forecast = JSON.parse(result);
-		console.log("forecast: ");
-  		console.log(result[1].current.temperature);
-  		var forecast = result[1].current.temperature
-  		response.say("The weather in " + city + " is " + forecast + " degrees celsius");
-	});
-
-    
+  	var forecast = "Searching...";
+    return new Promise(function(resolve, reject) {
+      weather.find({search: city, degreeType: 'C'}, (err, result) => {
+        if(err) {
+          response.say("The weather in " + city + " could not be found!").send();
+          reject("It broke");
+        } else {
+          var forecast = result[1].current.temperature;
+          response.say("The weather in " + city + " is " + forecast + " degrees celsius").send();
+          resolve("it worked");
+        }
+      });
+    });
   }
 );
 
