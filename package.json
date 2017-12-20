@@ -4,7 +4,8 @@
   "description": "Tutorial para criar uma alexa skill simples.",
   "main": "server.js",
   "dependencies": {
-    "alexa-app-server": "^3.0.1"
+    "alexa-app-server": "^3.0.1",
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
