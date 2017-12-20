@@ -35,9 +35,9 @@ app.intent('sayWeather',
   {
   	"slots" : {"city" : "AMAZON.US_CITY"},
     "utterances":[ 
-		"what is the weather in {- | city}",
-		"tell me the weather in {- | city}",
-		"how is the weather in {- | city}"]
+		"what is the weather in {-|city}",
+		"tell me the weather in {-|city}",
+		"how is the weather in {-|city}"]
   },
   function(request,response) {
   	var city = request.slot("city");
